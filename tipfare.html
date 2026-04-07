@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TipFare — The fair tip calculator for delivery</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;1,900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F7F5F2; color: #13141a; }
+
+  nav { background: #364254; border-bottom: none; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: #fff; text-decoration: none; }
+  .nav-logo svg { width: 28px; height: 28px; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 14px; color: rgba(255,255,255,0.78); text-decoration: none; }
+  .nav-links a:hover { color: #ffffff; }
+
+  section { padding: 5rem 2rem; max-width: 760px; margin: 0 auto; }
+
+  /* Hero */
+  .hero { padding-top: 6rem; padding-bottom: 4rem; }
+  .hero-eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #3a64d8; margin-bottom: 1.25rem; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; line-height: 1.15; color: #13141a; margin-bottom: 1.25rem; }
+  .hero h1 span { color: #3a64d8; }
+  .hero p { font-size: 1.1rem; color: #555; line-height: 1.7; max-width: 540px; margin-bottom: 2rem; }
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { background: #3a64d8; color: #fff; border: none; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: #2d52c0; }
+  .btn-ghost { background: transparent; color: #364254; border: 1.5px solid #364254; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: #3a64d8; color: #3a64d8; }
+
+  /* Why section */
+  .why-section { background: #ffffff; border-radius: 16px; padding: 3rem 2.5rem; margin: 0 auto 3rem; max-width: 760px; border: 1px solid #e8e8e8; }
+  .why-section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .why-section p { color: #555; line-height: 1.7; margin-bottom: 2rem; }
+  .examples { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .example-card { border-radius: 12px; padding: 1.25rem; }
+  .example-card.bad { background: #fff5f5; border: 1px solid #fecaca; }
+  .example-card.good { background: #fff5f5; border: 1px solid #fecaca; }
+  .example-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; }
+  .example-card.bad .example-label { color: #dc2626; }
+  .example-card.good .example-label { color: #dc2626; }
+  .example-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #13141a; }
+  .example-row { display: flex; justify-content: space-between; font-size: 13px; color: #555; margin-bottom: 4px; }
+  .example-tip { display: flex; justify-content: space-between; font-size: 14px; font-weight: 700; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(0,0,0,0.08); }
+  .example-card.bad .example-tip .tip-val { color: #dc2626; }
+  .example-card.good .example-tip .tip-val { color: #dc2626; }
+  .example-note { font-size: 11px; color: #888; margin-top: 6px; font-style: italic; }
+  .why-callout { background: #eff4ff; border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1.5rem; font-size: 14px; color: #3a64d8; font-weight: 500; text-align: center; line-height: 1.5; }
+
+  /* Calculator section */
+  .calc-section { background: #ffffff; border-radius: 16px; padding: 3rem 2.5rem; margin: 0 auto 3rem; max-width: 760px; border: 1px solid #e8e8e8; }
+  .calc-section h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+  
+  .miles-input-wrap { margin-bottom: 1.5rem; }
+  .miles-input-wrap label { font-size: 13px; font-weight: 600; color: #555; display: block; margin-bottom: 6px; }
+  .miles-input-inner { display: flex; align-items: center; gap: 10px; background: #ffffff; border: 1.5px solid #364254; border-radius: 10px; padding: 10px 14px; }
+  .miles-input-inner svg { color: #3a64d8; flex-shrink: 0; }
+  .miles-input-inner input { border: none; background: transparent; font-size: 1.1rem; font-weight: 600; color: #13141a; width: 100%; outline: none; }
+
+  .toggles { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #ffffff; border-radius: 10px; border: 1.5px solid #364254; cursor: pointer; transition: border-color 0.15s; }
+  .toggle-row:hover { border-color: #3a64d8; }
+  .toggle-row.active { background: #f0f4ff; border-color: #3a64d8; }
+  .toggle-left { display: flex; align-items: center; gap: 10px; }
+  .toggle-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; background: #ffffff; border: 1px solid #364254; font-size: 14px; flex-shrink: 0; }
+  .toggle-label { font-size: 14px; font-weight: 500; color: #13141a; }
+  .toggle-modifier { font-size: 12px; color: #888; margin-left: 4px; }
+  .toggle-switch { width: 40px; height: 22px; border-radius: 11px; background: #ddd; position: relative; transition: background 0.2s; flex-shrink: 0; }
+  .toggle-switch.on { background: #3a64d8; }
+  .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: transform 0.2s; }
+  .toggle-switch.on::after { transform: translateX(18px); }
+
+  .results { display: flex; flex-direction: column; gap: 10px; }
+  .result-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-radius: 10px; border: 1.5px solid transparent; }
+  .result-row.minimum { background: #F7F5F2; border-color: #e5e7eb; }
+  .result-row.fair { background: #eff4ff; border-color: #3a64d8; }
+  .result-row.great { background: #f0fdf4; border-color: #16a34a; }
+  .result-row.ballout { background: #f5f0ff; border-color: #7c3aed; }
+  .result-label { font-size: 14px; font-weight: 600; }
+  .result-row.minimum .result-label { color: #6b7280; }
+  .result-row.fair .result-label { color: #3a64d8; }
+  .result-row.great .result-label { color: #16a34a; }
+  .result-row.ballout .result-label { color: #7c3aed; }
+  .result-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 4px; margin-left: 8px; background: #3a64d8; color: #fff; }
+  .result-amount { font-size: 1.3rem; font-weight: 700; }
+  .result-row.minimum .result-amount { color: #6b7280; }
+  .result-row.fair .result-amount { color: #3a64d8; }
+  .result-row.great .result-amount { color: #16a34a; }
+  .result-row.ballout .result-amount { color: #7c3aed; }
+
+  /* Survey section */
+  .survey-section { background: #ffffff; border-radius: 16px; padding: 3rem 2.5rem; margin: 0 auto 3rem; max-width: 760px; border: 1px solid #e8e8e8; }
+  .survey-section h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; text-align: center; }
+  .survey-section .survey-sub { font-size: 14px; color: #888; text-align: center; margin-bottom: 2rem; }
+  .survey-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+  .survey-btn { border: 1.5px solid #364254; background: #ffffff; border-radius: 10px; padding: 14px 10px; text-align: center; cursor: pointer; font-size: 13px; font-weight: 500; color: #364254; transition: all 0.15s; line-height: 1.4; }
+  .survey-btn:hover { border-color: #3a64d8; color: #3a64d8; background: #f0f4ff; }
+  .survey-btn.selected { border-color: #3a64d8; background: #eff4ff; color: #3a64d8; font-weight: 700; }
+  .survey-result { display: none; text-align: center; }
+  .survey-result.visible { display: block; }
+  .badge-download { background: #eff4ff; border: 1.5px solid #3a64d8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .badge-preview { width: 80px; height: 80px; border-radius: 50%; background: #3a64d8; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .badge-preview svg { width: 36px; height: 36px; color: #fff; }
+  .badge-title { font-size: 1rem; font-weight: 700; color: #13141a; margin-bottom: 0.25rem; }
+  .badge-sub { font-size: 13px; color: #555; margin-bottom: 1rem; }
+  .btn-download { background: #3a64d8; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; }
+  .btn-download:hover { background: #2d52c0; }
+  .email-opt { margin-top: 1rem; text-align: center; }
+  .email-opt p { font-size: 12px; color: #888; margin-bottom: 8px; }
+  .email-opt-row { display: flex; gap: 8px; }
+  .email-opt input { flex: 1; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px 12px; font-size: 13px; outline: none; }
+  .email-opt input:focus { border-color: #3a64d8; }
+  .email-opt button { background: #f0f4ff; color: #3a64d8; border: 1px solid #3a64d8; border-radius: 8px; padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+  .share-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+  .share-btn { border: 1.5px solid #364254; background: #fff; border-radius: 8px; padding: 10px 18px; font-size: 13px; font-weight: 500; color: #333; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .share-btn:hover { background: #F7F5F2; }
+
+  /* Footer */
+  footer { background: #364254; color: #aaa; text-align: center; padding: 2rem; font-size: 13px; }
+  footer a { color: rgba(255,255,255,0.65); text-decoration: none; margin: 0 0.75rem; }
+  footer a:hover { color: #ffffff; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 0.5rem; }
+
+  @media (max-width: 600px) {
+    .examples { grid-template-columns: 1fr; }
+    .survey-options { grid-template-columns: 1fr; }
+    .why-section, .calc-section, .survey-section { padding: 2rem 1.5rem; }
+    section { padding: 3rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <!-- REPLACE WITH: <img src="/tipfare-logo.png" alt="TipFare icon" style="width:32px;height:32px;"> -->
+
+    <!-- REPLACE WITH: <img src="/tipfare-logotype.png" alt="TipFare" style="height:22px;"> -->
+    <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+  </a>
+  <div class="nav-links">
+    <a href="#why">Why it matters</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#survey">Share</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-eyebrow">Fair tipping starts here</div>
+  <h1>A $120 sushi order one mile away and a $15 burger eight miles away <span>shouldn't</span> tip the same way.</h1>
+  <p>The traditional percentage-based model fails delivery drivers. TipFare calculates a fair tip based on what actually matters — distance, time, and conditions on the road.</p>
+  <div class="hero-buttons">
+    <a href="#calculator" class="btn-primary">Calculate a fair tip</a>
+    <a href="#why" class="btn-ghost">Learn why</a>
+  </div>
+</section>
+
+<!-- Why Distance Matters -->
+<div class="why-section" id="why">
+  <h2>Why distance matters</h2>
+  <p>Most delivery apps suggest a tip based on the cost of your food. But a driver's effort doesn't change based on what's in the bag — it changes based on how far they go.</p>
+  <div class="examples">
+    <div class="example-card bad">
+      <div class="example-label">Overpaid</div>
+      <h3>🍣 The sushi order</h3>
+      <div class="example-row"><span>Food cost</span><span>$120.00</span></div>
+      <div class="example-row"><span>Distance</span><span>1.5 miles</span></div>
+      <div class="example-tip"><span>15% suggested tip</span><span class="tip-val">$18.00</span></div>
+      <div class="example-note">Driver is overpaid for a 5-minute trip.</div>
+    </div>
+    <div class="example-card good">
+      <div class="example-label">Underpaid</div>
+      <h3>🍔 The burger order</h3>
+      <div class="example-row"><span>Food cost</span><span>$12.00</span></div>
+      <div class="example-row"><span>Distance</span><span>8.0 miles</span></div>
+      <div class="example-tip"><span>15% suggested tip</span><span class="tip-val">$1.80</span></div>
+      <div class="example-note">Driver loses money on gas for a 20-minute trip.</div>
+    </div>
+  </div>
+  <div class="why-callout">Distance-based tipping ensures drivers are compensated for the factors that actually matter on the road.</div>
+</div>
+
+<!-- Calculator -->
+<div class="calc-section" id="calculator">
+  <h2>Fair tip calculator</h2>
+
+  <div class="miles-input-wrap">
+    <label>Delivery distance (miles)</label>
+    <div class="miles-input-inner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#3a64d8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <input type="number" id="miles" placeholder="Enter miles" min="0" step="0.1" value="" oninput="calculate()">
+    </div>
+  </div>
+
+  <div class="toggles">
+    <div class="toggle-row" onclick="toggle(this, 'traffic')" id="row-traffic">
+      <div class="toggle-left">
+        <div class="toggle-icon">
+          <!-- REPLACE WITH: <img src="/icon-traffic.png" alt="" style="width:22px;height:22px;object-fit:contain;"> -->
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="width:22px;height:22px;">
+        </div>
+        <span class="toggle-label">Traffic <span class="toggle-modifier">(+$3)</span></span>
+      </div>
+      <div class="toggle-switch" id="sw-traffic"></div>
+    </div>
+    <div class="toggle-row" onclick="toggle(this, 'weather')" id="row-weather">
+      <div class="toggle-left">
+        <div class="toggle-icon">
+          <!-- REPLACE WITH: <img src="/icon-weather.png" alt="" style="width:22px;height:22px;object-fit:contain;"> -->
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="width:22px;height:22px;">
+        </div>
+        <span class="toggle-label">Bad weather <span class="toggle-modifier">(+$3)</span></span>
+      </div>
+      <div class="toggle-switch" id="sw-weather"></div>
+    </div>
+    <div class="toggle-row" onclick="toggle(this, 'latenight')" id="row-latenight">
+      <div class="toggle-left">
+        <div class="toggle-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#3d3d3d" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/>
+          </svg>
+        </div>
+        <span class="toggle-label">Late night / early morning <span class="toggle-modifier">(+$2)</span></span>
+      </div>
+      <div class="toggle-switch" id="sw-latenight"></div>
+    </div>
+    <div class="toggle-row" onclick="toggle(this, 'largeorder')" id="row-largeorder">
+      <div class="toggle-left">
+        <div class="toggle-icon">
+          <!-- REPLACE WITH: <img src="/icon-large-order.png" alt="" style="width:22px;height:22px;object-fit:contain;"> -->
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" style="width:22px;height:22px;">
+        </div>
+        <span class="toggle-label">Large order <span class="toggle-modifier">(+$2)</span></span>
+      </div>
+      <div class="toggle-switch" id="sw-largeorder"></div>
+    </div>
+    <div class="toggle-row" onclick="toggle(this, 'remote')" id="row-remote">
+      <div class="toggle-left">
+        <div class="toggle-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#364254"/>
+            <circle cx="12" cy="9" r="2.5" fill="#fff"/>
+          </svg>
+        </div>
+        <span class="toggle-label">Remote area <span class="toggle-modifier">(+$3)</span></span>
+      </div>
+      <div class="toggle-switch" id="sw-remote"></div>
+    </div>
+  </div>
+
+  <div class="results">
+    <div class="result-row minimum">
+      <span class="result-label">Minimum tip</span>
+      <span class="result-amount" id="r-min">$4.00</span>
+    </div>
+    <div class="result-row fair">
+      <span class="result-label">Fair tip <span class="result-badge">Recommended</span></span>
+      <span class="result-amount" id="r-fair">$5.00</span>
+    </div>
+    <div class="result-row great">
+      <span class="result-label">Great tip</span>
+      <span class="result-amount" id="r-great">$6.00</span>
+    </div>
+    <div class="result-row ballout">
+      <span class="result-label">Ball out 💸</span>
+      <span class="result-amount" id="r-ball">—</span>
+    </div>
+  </div>
+</div>
+
+<!-- Survey + Badge -->
+<div class="survey-section" id="survey">
+  <h2>Did TipFare change your tip?</h2>
+  <p class="survey-sub">Help us understand how TipFare is changing tipping behavior.</p>
+
+  <div class="survey-options" id="survey-options">
+    <div class="survey-btn" onclick="selectSurvey(this, 'less')">Tipped less than I would have</div>
+    <div class="survey-btn" onclick="selectSurvey(this, 'same')">Tipped about the same</div>
+    <div class="survey-btn" onclick="selectSurvey(this, 'more')">Tipped more than I would have</div>
+  </div>
+
+  <div class="survey-result" id="survey-result">
+    <div class="badge-download">
+      <div class="badge-preview">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="18" fill="none"/>
+          <path d="M18 8v20M13 12.5C13 11 15.2 10 18 10s5 1 5 2.5-2.2 2.5-5 2.5-5 1-5 2.5S15.2 23 18 23s5-1 5-2.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="badge-title">Fair Tipper</div>
+      <div class="badge-sub">You tipped with TipFare. Download your badge and share it on your story.</div>
+      <button class="btn-download" onclick="downloadBadge()">Download your badge</button>
+      <div class="email-opt">
+        <p>Want to know when TipFare launches on mobile?</p>
+        <div class="email-opt-row">
+          <input type="email" id="email-input" placeholder="your@email.com">
+          <button onclick="submitEmail()">Notify me</button>
+        </div>
+      </div>
+    </div>
+    <div class="share-row">
+      <button class="share-btn" onclick="shareTwitter()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.213 5.567L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        Share on X
+      </button>
+      <button class="share-btn" onclick="copyLink()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Copy link
+      </button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-tagline">© 2026 TipFare. For fairer roads.</div>
+</footer>
+
+<script>
+  const modifiers = { traffic: false, weather: false, latenight: false, largeorder: false, remote: false };
+  const modifierAmounts = { traffic: 3, weather: 3, latenight: 2, largeorder: 2, remote: 3 };
+
+  function toggle(row, key) {
+    modifiers[key] = !modifiers[key];
+    const sw = document.getElementById('sw-' + key);
+    if (modifiers[key]) { sw.classList.add('on'); row.classList.add('active'); }
+    else { sw.classList.remove('on'); row.classList.remove('active'); }
+    calculate();
+  }
+
+  function calculate() {
+    const milesVal = parseFloat(document.getElementById('miles').value) || 0;
+    let mod = 0;
+    for (const key in modifiers) { if (modifiers[key]) mod += modifierAmounts[key]; }
+
+    const min = Math.max(4, 1 * milesVal) + mod;
+    const fair = Math.max(5, 1.5 * milesVal) + mod;
+    const great = Math.max(6, 2 * milesVal) + mod;
+    const ball = milesVal > 0 ? (5 * milesVal) + mod : null;
+
+    document.getElementById('r-min').textContent = '$' + min.toFixed(2);
+    document.getElementById('r-fair').textContent = '$' + fair.toFixed(2);
+    document.getElementById('r-great').textContent = '$' + great.toFixed(2);
+    document.getElementById('r-ball').textContent = ball !== null ? '$' + ball.toFixed(2) : '—';
+  }
+
+  function selectSurvey(el, val) {
+    document.querySelectorAll('.survey-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    setTimeout(() => {
+      document.getElementById('survey-result').classList.add('visible');
+      document.getElementById('survey-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 300);
+  }
+
+  function downloadBadge() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 400; canvas.height = 400;
+    const ctx = canvas.getContext('2d');
+    ctx.beginPath(); ctx.arc(200, 200, 200, 0, Math.PI * 2); ctx.fillStyle = '#3a64d8'; ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 52px -apple-system, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('Fair Tipper', 200, 190);
+    ctx.font = '22px -apple-system, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillText('tipfare.com', 200, 255);
+    const link = document.createElement('a'); link.download = 'tipfare-fair-tipper-badge.png'; link.href = canvas.toDataURL(); link.click();
+  }
+
+  function submitEmail() {
+    const email = document.getElementById('email-input').value;
+    if (email) { document.getElementById('email-input').value = ''; alert('Thanks! We\'ll let you know when TipFare launches on mobile.'); }
+  }
+
+  function shareTwitter() {
+    const text = encodeURIComponent('Delivery tips should be based on distance, not food price. TipFare helped me tip fairly. tipfare.com');
+    window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText('https://tipfare.com').then(() => alert('Link copied!'));
+  }
+
+  calculate();
+</script>
+</body>
+</html>
