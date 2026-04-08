@@ -86,7 +86,7 @@
   .result-row.fair .result-label { color: #3a64d8; }
   .result-row.great .result-label { color: #16a34a; }
   .result-row.ballout .result-label { color: #7c3aed; }
-  .result-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 4px; margin-left: 8px; background: #3a64d8; color: #fff; }
+  .result-sticker { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 8px; border-radius: 4px; margin-left: 8px; background: #3a64d8; color: #fff; }
   .result-amount { font-size: 1.3rem; font-weight: 700; }
   .result-row.minimum .result-amount { color: #6b7280; }
   .result-row.fair .result-amount { color: #3a64d8; }
@@ -103,11 +103,10 @@
   .survey-btn.selected { border-color: #3a64d8; background: #eff4ff; color: #3a64d8; font-weight: 700; }
   .survey-result { display: none; text-align: center; }
   .survey-result.visible { display: block; }
-  .badge-download { background: #eff4ff; border: 1.5px solid #3a64d8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
-  .badge-preview { width: 80px; height: 80px; border-radius: 50%; background: #3a64d8; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
-  .badge-preview svg { width: 36px; height: 36px; color: #fff; }
-  .badge-title { font-size: 1rem; font-weight: 700; color: #13141a; margin-bottom: 0.25rem; }
-  .badge-sub { font-size: 13px; color: #555; margin-bottom: 1rem; }
+  .sticker-download { background: #eff4ff; border: 1.5px solid #3a64d8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .sticker-preview { width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  .sticker-title { font-size: 1rem; font-weight: 700; color: #13141a; margin-bottom: 0.25rem; }
+  .sticker-sub { font-size: 13px; color: #555; margin-bottom: 1rem; }
   .btn-download { background: #3a64d8; color: #fff; border: none; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; }
   .btn-download:hover { background: #2d52c0; }
   .email-opt { margin-top: 1rem; text-align: center; }
@@ -261,7 +260,7 @@
       <span class="result-amount" id="r-min">$4.00</span>
     </div>
     <div class="result-row fair">
-      <span class="result-label">Fair tip <span class="result-badge">Recommended</span></span>
+      <span class="result-label">Fair tip <span class="result-sticker">Recommended</span></span>
       <span class="result-amount" id="r-fair">$5.00</span>
     </div>
     <div class="result-row great">
@@ -275,7 +274,7 @@
   </div>
 </div>
 
-<!-- Survey + Badge -->
+<!-- Survey + sticker -->
 <div class="survey-section" id="survey">
   <h2>Did TipFare change your tip?</h2>
   <p class="survey-sub">Help us understand how TipFare is changing tipping behavior.</p>
@@ -287,12 +286,12 @@
   </div>
 
   <div class="survey-result" id="survey-result">
-    <div class="badge-download">
-      <div class="badge-preview">
-        <img src="/tipfare-badge.png" alt="Fair Tipper Sticker" style="width:80px;height:80px;object-fit:contain;">
+    <div class="sticker-download">
+      <div class="sticker-preview">
+        <img src="/tipfare-sticker.png" alt="Fair Tipper Sticker" style="width:80px;height:80px;object-fit:contain;">
       </div>
-      <div class="badge-title">One of the good ones.</div>
-      <div class="badge-sub">Now go show everyone where the money's at.</div>
+      <div class="sticker-title">One of the good ones.</div>
+      <div class="sticker-sub">Now go show everyone where the money's at.</div>
       <a href="/tipfare-sticker.png" download="tipfare-sticker.png" class="btn-download" style="display:block;text-align:center;text-decoration:none;">Download your FREE Sticker</a>
       <div class="email-opt">
         <p>Want to know when TipFare launches on mobile?</p>
@@ -364,7 +363,7 @@
     }, 300);
   }
 
-  function downloadBadge() {
+  function downloadsticker() {
     const canvas = document.createElement('canvas');
     canvas.width = 400; canvas.height = 400;
     const ctx = canvas.getContext('2d');
@@ -373,7 +372,7 @@
     ctx.fillText('Fair Tipper', 200, 190);
     ctx.font = '22px -apple-system, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.8)';
     ctx.fillText('tipfare.com', 200, 255);
-    const link = document.createElement('a'); link.download = 'tipfare-fair-tipper-badge.png'; link.href = canvas.toDataURL(); link.click();
+    const link = document.createElement('a'); link.download = 'tipfare-fair-tipper-sticker.png'; link.href = canvas.toDataURL(); link.click();
   }
 
   function submitEmail() {
