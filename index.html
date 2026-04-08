@@ -10,7 +10,10 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F7F5F2; color: #13141a; }
 
   nav { background: #364254; border-bottom: none; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
-  .nav-logo { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; color: #fff; text-decoration: none; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.2s; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-logo { display: flex; align-items: center; gap: 0; font-weight: 600; font-size: 15px; color: #fff; text-decoration: none; margin-right: auto; }
   .nav-logo svg { width: 28px; height: 28px; }
   .nav-links { display: flex; gap: 2rem; }
   .nav-links a { font-size: 14px; color: rgba(255,255,255,0.78); text-decoration: none; }
@@ -100,7 +103,7 @@
   .survey-btn.selected { border-color: #3a64d8; background: #eff4ff; color: #3a64d8; font-weight: 700; }
   .survey-result { display: none; text-align: center; }
   .survey-result.visible { display: block; }
-  .badge-download { display:none; background: #eff4ff; border: 1.5px solid #3a64d8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .badge-download { background: #eff4ff; border: 1.5px solid #3a64d8; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
   .badge-preview { width: 80px; height: 80px; border-radius: 50%; background: #3a64d8; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
   .badge-preview svg { width: 36px; height: 36px; color: #fff; }
   .badge-title { font-size: 1rem; font-weight: 700; color: #13141a; margin-bottom: 0.25rem; }
@@ -123,11 +126,15 @@
   footer a:hover { color: #ffffff; }
   .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 0.5rem; }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .examples { grid-template-columns: 1fr; }
     .survey-options { grid-template-columns: 1fr; }
     .why-section, .calc-section, .survey-section { padding: 2rem 1.5rem; }
     section { padding: 3rem 1.25rem; }
+    .hamburger { display: flex !important; }
+    .nav-links { display: none !important; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: #364254; padding: 1rem 2rem 1.5rem; gap: 1.25rem; z-index: 99; border-top: 1px solid rgba(255,255,255,0.1); }
+    .nav-links.open { display: flex !important; }
+    .nav-links a { font-size: 16px; }
   }
 </style>
 </head>
@@ -135,15 +142,15 @@
 
 <nav>
   <a href="#" class="nav-logo">
-    <!-- REPLACE WITH: <img src="/tipfare-logo.png" alt="TipFare icon" style="width:32px;height:32px;"> -->
-
-    <!-- REPLACE WITH: <img src="/tipfare-logotype.png" alt="TipFare" style="height:22px;"> -->
     <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
   </a>
-  <div class="nav-links">
-    <a href="#why">Why it matters</a>
-    <a href="#calculator">Calculator</a>
-    <a href="#survey">Share</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="#why" onclick="toggleMenu()">Why it matters</a>
+    <a href="#calculator" onclick="toggleMenu()">Calculator</a>
+    <a href="#survey" onclick="toggleMenu()">Share</a>
   </div>
 </nav>
 
@@ -285,14 +292,11 @@
   <div class="survey-result" id="survey-result">
     <div class="badge-download">
       <div class="badge-preview">
-        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="18" cy="18" r="18" fill="none"/>
-          <path d="M18 8v20M13 12.5C13 11 15.2 10 18 10s5 1 5 2.5-2.2 2.5-5 2.5-5 1-5 2.5S15.2 23 18 23s5-1 5-2.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-        </svg>
+        <!-- REPLACE WITH: <img src="/tipfare-badge.png" alt="Fair Tipper Sticker" style="width:80px;height:80px;object-fit:contain;"> -->
       </div>
-      <div class="badge-title">Fair Tipper</div>
-      <div class="badge-sub">You tipped with TipFare. Download your badge and share it on your story.</div>
-      <button class="btn-download" onclick="downloadBadge()">Download your badge</button>
+      <div class="badge-title">One of the good ones.</div>
+      <div class="badge-sub">Now go show everyone where the money's at.</div>
+      <a href="/tipfare-badge.png" download="tipfare-sticker.png" class="btn-download" style="display:block;text-align:center;text-decoration:none;">Download your FREE Sticker</a>
       <div class="email-opt">
         <p>Want to know when TipFare launches on mobile?</p>
         <div class="email-opt-row">
@@ -315,6 +319,9 @@
 </div>
 
 <footer>
+  <div style="margin-bottom: 1rem;">
+    <!-- REPLACE WITH: <img src="/tipfare-logo.png" alt="TipFare" style="width:40px;height:40px;opacity:0.65;"> -->
+  </div>
   <div>
     <a href="#">Privacy Policy</a>
     <a href="#">Terms of Service</a>
@@ -387,6 +394,11 @@
   }
 
   calculate();
+
+  function toggleMenu() {
+    const links = document.getElementById('nav-links');
+    links.classList.toggle('open');
+  }
 </script>
 </body>
 </html>
