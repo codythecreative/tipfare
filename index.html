@@ -363,30 +363,18 @@
     }, 300);
   }
 
-  function downloadsticker() {
-    const canvas = document.createElement('canvas');
-    canvas.width = 400; canvas.height = 400;
-    const ctx = canvas.getContext('2d');
-    ctx.beginPath(); ctx.arc(200, 200, 200, 0, Math.PI * 2); ctx.fillStyle = '#3a64d8'; ctx.fill();
-    ctx.fillStyle = '#fff'; ctx.font = 'bold 52px -apple-system, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText('Fair Tipper', 200, 190);
-    ctx.font = '22px -apple-system, sans-serif'; ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    ctx.fillText('tipfare.com', 200, 255);
-    const link = document.createElement('a'); link.download = 'tipfare-fair-tipper-sticker.png'; link.href = canvas.toDataURL(); link.click();
-  }
-
   function submitEmail() {
     const email = document.getElementById('email-input').value;
     if (email) { document.getElementById('email-input').value = ''; alert('Thanks! We\'ll let you know when TipFare launches on mobile.'); }
   }
 
   function shareTwitter() {
-    const text = encodeURIComponent('Delivery tips should be based on distance, not food price. TipFare helped me tip fairly. tipfare.com');
+    const text = encodeURIComponent('Delivery tips should be based on distance, not food price. TipFare helped me tip fairly. tipfare.app');
     window.open('https://twitter.com/intent/tweet?text=' + text, '_blank');
   }
 
   function copyLink() {
-    navigator.clipboard.writeText('https://tipfare.com').then(() => alert('Link copied!'));
+    navigator.clipboard.writeText('https://tipfare.app').then(() => alert('Link copied!'));
   }
 
   calculate();
