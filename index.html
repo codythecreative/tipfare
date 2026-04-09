@@ -370,6 +370,7 @@
 
   fetch('https://script.google.com/macros/s/AKfycbwkLf1x_diiWTjZtk0r9Qbw-qpTFfHm78h0yqfvhg8Qz_I2M0a_jD8UeOSXprr0RCc/exec', {
     method: 'POST',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, survey })
   })
