@@ -364,9 +364,21 @@
   }
 
   function submitEmail() {
-    const email = document.getElementById('email-input').value;
-    if (email) { document.getElementById('email-input').value = ''; alert('Thanks! We\'ll let you know when TipFare launches on mobile.'); }
-  }
+  const email = document.getElementById('email-input').value.trim();
+  const survey = document.querySelector('.survey-btn.selected')?.textContent || '';
+  if (!email) return;
+
+  fetch('https://script.google.com/macros/s/AKfycbwkLf1x_diiWTjZtk0r9Qbw-qpTFfHm78h0yqfvhg8Qz_I2M0a_jD8UeOSXprr0RCc/exec', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, survey })
+  })
+  .then(() => {
+    document.getElementById('email-input').value = '';
+    document.querySelector('.email-opt button').textContent = 'You\'re in!';
+  })
+  .catch(() => alert('Something went wrong. Try again.'));
+}
 
   function shareTwitter() {
     const text = encodeURIComponent('Delivery tips should be based on distance, not food price. TipFare helped me tip fairly. tipfare.app');
