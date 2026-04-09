@@ -9,9 +9,9 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F7F5F2; color: #13141a; }
 
-  nav { background: #364254; border-bottom: none; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  nav { background: #364254; border-bottom: none; padding: 0 2rem; display: flex; align-items: center; justify-content: flex-start; height: 60px; position: sticky; top: 0; z-index: 100; }
   .nav-logo { display: flex; align-items: center; gap: 0; font-weight: 600; font-size: 15px; color: #fff; text-decoration: none; }
-  .nav-links { display: flex; gap: 2rem; }
+  .nav-links { display: flex; gap: 2rem; margin-left: auto; }
   .nav-links a { font-size: 14px; color: rgba(255,255,255,0.78); text-decoration: none; }
   .nav-links a:hover { color: #ffffff; }
   .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
@@ -130,7 +130,7 @@
     .why-section, .calc-section, .survey-section { padding: 2rem 1.5rem; }
     nav { padding: 0 1.25rem; }
     section { padding: 3rem 1.25rem; }
-    .hamburger { display: flex !important; }
+    .hamburger { display: flex !important; margin-left: auto }
     .nav-links { display: none !important; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background: #364254; padding: 1rem 2rem 1.5rem; gap: 1.25rem; z-index: 99; border-top: 1px solid rgba(255,255,255,0.1); }
     .nav-links.open { display: flex !important; }
     .nav-links a { font-size: 16px; }
