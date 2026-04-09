@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — TipFare</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;1,900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F7F5F2; color: #13141a; }
+  nav { background: #364254; padding: 0 2rem; display: flex; align-items: center; height: 60px; }
+  .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; text-decoration: none; letter-spacing: -0.5px; }
+  .content { max-width: 680px; margin: 0 auto; padding: 4rem 2rem; }
+  h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .updated { font-size: 13px; color: #888; margin-bottom: 3rem; }
+  h2 { font-size: 1.1rem; font-weight: 700; margin: 2rem 0 0.5rem; }
+  p { font-size: 15px; color: #444; line-height: 1.75; margin-bottom: 1rem; }
+  a { color: #3a64d8; }
+  footer { background: #364254; color: #aaa; text-align: center; padding: 2rem; font-size: 13px; }
+  footer a { color: rgba(255,255,255,0.65); text-decoration: none; margin: 0 0.75rem; }
+  footer a:hover { color: #fff; }
+  .footer-tagline { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 0.5rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></a>
+</nav>
+
+<div class="content">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: April 2026</p>
+
+  <p>TipFare™ is a free delivery tip calculator. We take your privacy seriously and keep what we collect to a minimum.</p>
+
+  <h2>What we collect</h2>
+  <p>If you choose to provide your email address to be notified of future updates, we store that email along with your optional survey response and the date submitted. We do not collect your name, location, payment information, or any other personal data.</p>
+
+  <h2>How we store it</h2>
+  <p>Submitted information is stored in a private Google Sheet accessible only to TipFare. It is not shared with, sold to, or accessible by any third party.</p>
+
+  <h2>How we use it</h2>
+  <p>Your email is used solely to notify you when TipFare launches on mobile. Survey responses are used in aggregate to understand how TipFare is influencing tipping behavior. We do not send marketing emails or share your data with advertisers.</p>
+
+  <h2>Cookies and tracking</h2>
+  <p>TipFare does not use cookies, tracking pixels, or analytics software. No data is collected from your use of the calculator itself.</p>
+
+  <h2>Data deletion</h2>
+  <p>To request removal of your email from our records, contact us at <a href="mailto:tipfare.app@gmail.com">tipfare.app@gmail.com</a> and we will delete it promptly.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes in a meaningful way, we will update the date at the top of this page.</p>
+
+  <h2>Contact</h2>
+  <p>Questions? Reach us at <a href="mailto:tipfare.app@gmail.com">tipfare.app@gmail.com</a>.</p>
+</div>
+
+<footer>
+  <div style="margin-bottom: 1rem;">
+    <span style="font-family: 'DM Sans', sans-serif; font-weight: 900; font-style: italic; font-size: 16px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:8px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+  </div>
+  <div>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="mailto:tipfare.app@gmail.com">Contact</a>
+  </div>
+  <div class="footer-tagline">© 2026 TipFare. For fairer roads.</div>
+</footer>
+
+</body>
+</html>
