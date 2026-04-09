@@ -381,9 +381,7 @@
   })
   .then(() => {
     document.getElementById('email-input').value = '';
-    const btn = document.querySelector('.email-opt button');
-  btn.textContent = 'You\'re in!';
-  btn.classList.add('selected');
+    document.querySelector('.email-opt button').textContent = 'You\'re in!';
   .catch(() => alert('Something went wrong. Try again.'));
 }
 
