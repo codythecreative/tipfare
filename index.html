@@ -368,11 +368,14 @@
   const survey = document.querySelector('.survey-btn.selected')?.textContent || '';
   if (!email) return;
 
-  fetch('https://script.google.com/macros/s/AKfycbwkLf1x_diiWTjZtk0r9Qbw-qpTFfHm78h0yqfvhg8Qz_I2M0a_jD8UeOSXprr0RCc/exec', {
+  const formData = new FormData();
+  formData.append('email', email);
+  formData.append('survey', survey);
+
+  fetch('https://script.google.com/macros/s/AKfycbxP_pTW3Axv7TqqTUQ7AO6DQoeZu-RZJjE6c2cIDPYJqP6c43krgmoHrzdO9BWiyQFL/exec', {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, survey })
+    body: formData
   })
   .then(() => {
     document.getElementById('email-input').value = '';
