@@ -57,6 +57,8 @@
     }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;1,900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
@@ -64,80 +66,148 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background-color: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F7F5F2;
+            color: #13141a;
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        nav {
+            background: #364254;
+            border-bottom: none;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        header {
-            margin-bottom: 48px;
-        }
-        
-        .logo {
-            font-size: 14px;
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
             font-weight: 600;
-            color: #3a64d8;
+            font-size: 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto;
+        }
+        
+        .nav-links a {
+            font-size: 14px;
+            color: rgba(255,255,255,0.78);
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+        }
+        
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        
+        .page-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            color: #3a64d8;
+            margin-bottom: 1.25rem;
         }
         
         h1 {
-            font-size: 42px;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 24px;
+            line-height: 1.15;
+            color: #13141a;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             color: #13141a;
         }
         
-        .answer {
-            font-size: 18px;
-            line-height: 1.5;
-            color: #374151;
-            margin-bottom: 48px;
-            padding: 24px;
-            background-color: #f3f4f6;
-            border-left: 4px solid #3a64d8;
+        .answer-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid #e8e8e8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
         }
         
-        .section {
-            margin-bottom: 56px;
-        }
-        
-        .section h2 {
-            font-size: 28px;
+        .answer-box strong {
+            color: #3a64d8;
             font-weight: 700;
-            margin-bottom: 20px;
-            color: #13141a;
         }
         
-        .section p {
-            font-size: 16px;
-            margin-bottom: 16px;
-            color: #374151;
+        .section-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
         }
         
-        .section ul {
+        .section-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .section-box ul {
             list-style: none;
-            margin-bottom: 16px;
+            margin-bottom: 1.5rem;
         }
         
-        .section li {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #374151;
+        .section-box li {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
             padding-left: 24px;
             position: relative;
+            font-size: 1rem;
         }
         
-        .section li:before {
+        .section-box li:before {
             content: "→";
             position: absolute;
             left: 0;
@@ -145,138 +215,230 @@
             font-weight: 600;
         }
         
+        .section-box li strong {
+            color: #13141a;
+        }
+        
+        .examples {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .example-card {
+            border-radius: 12px;
+            padding: 1.5rem;
+            background: #fff5f5;
+            border: 1px solid #fecaca;
+        }
+        
+        .example-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #dc2626;
+            margin-bottom: 0.75rem;
+        }
+        
+        .example-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #13141a;
+        }
+
+        .example-card.blue {
+    background: #eff4ff;
+    border: 1px solid #3a64d8;
+        }
+
+        .example-card.blue .example-label {
+           color: #3a64d8;
+        }
+
+        .example-card.blue .tip-val {
+           color: #3a64d8;
+        }
+        
+        .example-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        
+        .example-tip {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        
+        .example-tip .tip-val {
+            color: #dc2626;
+        }
+        
+        .example-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+        
         .comparison-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 24px 0;
-            background: white;
-            border: 1px solid #e5e7eb;
+            margin: 2rem 0;
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
         }
         
         .comparison-table th,
         .comparison-table td {
-            padding: 16px;
+            padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e8e8e8;
         }
         
         .comparison-table th {
             background-color: #f9fafb;
-            font-weight: 600;
+            font-weight: 700;
             color: #13141a;
             font-size: 14px;
         }
         
         .comparison-table td {
             font-size: 15px;
+            color: #555;
         }
         
         .comparison-table tr:last-child td {
             border-bottom: none;
         }
         
-        .example {
-            background-color: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 20px;
-            margin: 24px 0;
-            border-radius: 4px;
-        }
-        
-        .example h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #13141a;
-            margin-bottom: 12px;
-        }
-        
-        .example p {
+        .callout {
+            background: #eff4ff;
+            border: 1px solid #3a64d8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
             font-size: 15px;
-            color: #374151;
-            margin-bottom: 8px;
-        }
-        
-        .example p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .example .label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #b45309;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 12px;
-            display: block;
+            color: #3a64d8;
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: center;
         }
         
         .cta-section {
-            background-color: #3a64d8;
-            color: white;
-            padding: 40px;
-            border-radius: 8px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
             text-align: center;
-            margin: 56px 0;
         }
         
         .cta-section h2 {
-            color: white;
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
         }
         
         .cta-section p {
-            color: #e0e7ff;
-            margin-bottom: 24px;
-            font-size: 16px;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
         
-        .cta-button {
-            display: inline-block;
-            background-color: white;
-            color: #3a64d8;
-            padding: 12px 32px;
-            border-radius: 4px;
-            font-weight: 600;
-            text-decoration: none;
+        .btn-primary {
+            background: #3a64d8;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
             font-size: 15px;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
         }
         
-        .cta-button:hover {
-            background-color: #f3f4f6;
+        .btn-primary:hover {
+            background: #2d52c0;
+        }
+        
+        .btn-notify {
+            background: #ffffff;
+            color: #3a64d8;
+            border: 1.5px solid #ffffff;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.15s;
+        }
+        
+        .btn-notify:hover {
+            background: #3a64d8;
+            color: #ffffff;
+            border-color: #3a64d8;
         }
         
         .faq-section {
-            margin-top: 56px;
-        }
-        
-        .faq-section h2 {
-            margin-bottom: 32px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
         }
         
         .faq-item {
-            border-bottom: 1px solid #e5e7eb;
-            padding: 24px 0;
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1.5rem 0;
+        }
+        
+        .faq-item:first-child {
+            padding-top: 0;
         }
         
         .faq-item:last-child {
             border-bottom: none;
+            padding-bottom: 0;
         }
         
         .faq-item h3 {
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 1rem;
+            font-weight: 700;
             color: #13141a;
-            margin-bottom: 12px;
+            margin-bottom: 1rem;
             cursor: pointer;
             user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .faq-item h3:before {
             content: "+";
-            margin-right: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #eff4ff;
             color: #3a64d8;
             font-weight: 700;
+            border-radius: 4px;
+            flex-shrink: 0;
         }
         
         .faq-item.open h3:before {
@@ -285,8 +447,8 @@
         
         .faq-answer {
             font-size: 15px;
-            color: #374151;
-            line-height: 1.6;
+            color: #555;
+            line-height: 1.7;
             display: none;
         }
         
@@ -295,36 +457,101 @@
         }
         
         footer {
-            margin-top: 56px;
-            padding-top: 32px;
-            border-top: 1px solid #e5e7eb;
+            background: #364254;
+            color: #aaa;
             text-align: center;
+            padding: 2rem;
             font-size: 13px;
-            color: #6b7280;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
+        
+        .footer-tagline {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.5rem;
+        }
+        
+        @media (max-width: 640px) {
+            .examples {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 2rem 1.25rem;
+            }
+            
+            .section-box, .answer-box, .cta-section, .faq-section {
+                padding: 2rem 1.5rem;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">TipFare</div>
-            <h1>How Much to Tip a Delivery Driver</h1>
-        </header>
-        
-        <div class="answer">
+
+<nav>
+    <a href="/" class="nav-logo">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="/#why" onclick="toggleMenu()">Why it matters</a>
+        <a href="/#calculator" onclick="toggleMenu()">Calculator</a>
+        <a href="/#survey" onclick="toggleMenu()">Share</a>
+    </div>
+</nav>
+
+<section>
+    <div class="content">
+        <div class="page-eyebrow">Delivery tipping guide</div>
+        <h1>How much to tip a delivery driver</h1>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="answer-box">
             <strong>Tip based on distance, not food price.</strong> Most deliveries should get $1–$2 per mile, with a minimum of $4–$5. A $60 order delivered one mile away deserves less than a $15 order delivered six miles away—but percentage-based tipping gets this backwards.
         </div>
-        
-        <div class="section">
-            <h2>Why Percentage Tipping Fails for Delivery</h2>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>Why percentage tipping fails for delivery</h2>
             <p>Restaurant tipping makes sense at 15-20% because server effort scales with order complexity. A $50 order and a $100 order take roughly the same server time, so a percentage reflects the actual work.</p>
             <p>Delivery is completely different. The driver's effort—and their actual costs—are determined by <strong>how far they have to drive</strong>, not how much the food costs.</p>
             <p>When you order sushi for $120 and tip 20%, you're tipping $24 for a one-mile drive. When someone orders a $15 burger and tips 20%, they're tipping $3 for an eight-mile drive. The second driver did four times more work but got 1/8th the tip.</p>
             <p>This isn't fairness. This is a system designed around restaurant economics that happens to get used for something completely different.</p>
         </div>
-        
-        <div class="section">
-            <h2>What Actually Determines Delivery Effort</h2>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>What actually determines delivery effort</h2>
             <p>Drivers face real costs:</p>
             <ul>
                 <li><strong>Distance.</strong> Every mile driven costs gas, maintenance, and time. This is the primary factor.</li>
@@ -334,36 +561,64 @@
             </ul>
             <p>None of these factors correlate with food price. That's why distance-based tipping works and percentage tipping doesn't.</p>
         </div>
-        
-        <div class="section">
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
             <h2>The Fine Dining vs. Fast Food Example</h2>
-            <div class="example">
-                <h3>Scenario A: High-Price, Short Distance</h3>
-                <p><strong>Order:</strong> Italian for the family</p>
-                <p><strong>Price:</strong> $125</p>
-                <p><strong>Distance:</strong> 2 miles</p>
-                <p><strong>20% tip (wrong):</strong> $25</p>
-                <p><strong>Distance-based tip ($1.50/mile):</strong> $5</p>
-                <span class="label">Driver effort: Low</span>
+            <div class="examples">
+                <div class="example-card">
+                    <div class="example-label">High price, short distance</div>
+                    <h3>🍝🍕🥗🍰 Italian for the family</h3>
+                    <div class="example-row"><span>Food cost</span><span>$125.00</span></div>
+                    <div class="example-row"><span>Distance</span><span>2 miles</span></div>
+                    <div class="example-tip"><span>20% tip (wrong)</span><span class="tip-val">$25.00</span></div>
+                    <div class="example-note">Driver is overpaid for a 5-minute trip.</div>
+                </div>
+                <div class="example-card">
+                    <div class="example-label">Low price, long distance</div>
+                    <h3>🌮 Fast food for one</h3>
+                    <div class="example-row"><span>Food cost</span><span>$12.00</span></div>
+                    <div class="example-row"><span>Distance</span><span>6.0 miles</span></div>
+                    <div class="example-tip"><span>20% tip (wrong)</span><span class="tip-val">$2.40</span></div>
+                    <div class="example-note">Driver loses money on gas for a 20+-minute trip.</div>
+                </div>
             </div>
-            <div class="example">
-                <h3>Scenario B: Low-Price, Long Distance</h3>
-                <p><strong>Order:</strong> Fast food for one</p>
-                <p><strong>Price:</strong> $12</p>
-                <p><strong>Distance:</strong> 10 miles</p>
-                <p><strong>20% tip (wrong):</strong> $2.40</p>
-                <p><strong>Distance-based tip ($1.50/mile):</strong> $15</p>
-                <span class="label">Driver effort: High</span>
+            <p><p>The second driver did 3× the work but would get 1/11 the tip under the percentage model. Distance-based tipping actually rewards the work that's being done.</p>
+            
+            <div class="examples">
+                <div class="example-card blue">
+                    <div class="example-label">Distance-based (correct)</div>
+                    <🍝🍕🥗🍰 Italian for the family</h3>
+                    <div class="example-row"><span>Distance</span><span>1.5 miles</span></div>
+                    <div class="example-tip"><span>Distance-based tip (right)</span><span class="tip-val">$4.00–$5.00</span></div>
+                    <div class="example-note">Driver is fairly compensated for a 5-minute trip.</div>
+                </div>
+                <div class="example-card blue">
+                    <div class="example-label">Distance-based (correct)</div>
+                    <h3>🌮 Fast food for one</h3>
+                    <div class="example-row"><span>Distance</span><span>6.0 miles</span></div>
+                    <div class="example-tip"><span>Distance-based tip (right)</span><span class="tip-val">$6.00–$9.00</span></div>
+                    <div class="example-note">Driver is fairly compensated for a 20-minute trip.</div>
+                </div>
             </div>
-            <p>The second driver did 5× the work but would get 84% less tip under the percentage model. Distance-based tipping actually rewards the work that's being done.</p>
         </div>
-        
-        <div class="section">
-            <h2>The Distance-Based Model</h2>
+    </div>
+</section>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>The distance-based model</h2>
             <table class="comparison-table">
                 <thead>
                     <tr>
-                        <th>Tip Level</th>
+                        <th>Tip level</th>
                         <th>Formula</th>
                         <th>Example (5 miles)</th>
                     </tr>
@@ -372,7 +627,7 @@
                     <tr>
                         <td><strong>Minimum</strong></td>
                         <td>max($4, $1 × miles)</td>
-                        <td>$5</td>
+                        <td>$5.00</td>
                     </tr>
                     <tr>
                         <td><strong>Fair</strong></td>
@@ -382,32 +637,43 @@
                     <tr>
                         <td><strong>Great</strong></td>
                         <td>max($6, $2 × miles)</td>
-                        <td>$10</td>
+                        <td>$10.00</td>
                     </tr>
                 </tbody>
             </table>
             <p>For longer or more difficult deliveries, add modifiers:</p>
             <ul>
-                <li>Traffic or bad weather: +$2</li>
+                <li>Traffic or bad weather: +$2–$3</li>
                 <li>Late night or early morning: +$2</li>
                 <li>Large order: +$2</li>
                 <li>Remote area: +$3</li>
             </ul>
+            <div class="callout">
+                Distance-based tipping ensures drivers are compensated for the factors that actually matter on the road.
+            </div>
         </div>
-        
+    </div>
+</section>
+
+<section>
+    <div class="content">
         <div class="cta-section">
-            <h2>Stop Guessing. Calculate Fairly.</h2>
-            <p>Use TipFare to calculate the right tip based on actual distance and conditions—not food price.</p>
-            <a href="https://tipfare.app" class="cta-button">Use TipFare</a>
+            <h2>Stop guessing. Calculate fairly.</h2>
+            <p>Use TipFare's calculator to determine the right tip based on actual distance and conditions—not food price.</p>
+            <a href="/#calculator" class="btn-primary">Try the calculator</a>
         </div>
-        
+    </div>
+</section>
+
+<section>
+    <div class="content">
         <div class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2>Frequently asked questions</h2>
             
             <div class="faq-item">
                 <h3>Is $5 enough for a delivery tip?</h3>
                 <div class="faq-answer">
-                    It depends on distance. $5 is reasonable for trips up to 3-4 miles away. For longer distances, aim for $1–$1.50 per mile as a baseline. A 10-mile delivery should be $10–$15.
+                    It depends on distance. $5 is a reasonable minimum for trips up to 3–4 miles away. For longer distances, aim for $1–$1.50 per mile as a baseline. A 10-mile delivery should be $10–$15.
                 </div>
             </div>
             
@@ -439,18 +705,33 @@
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>&copy; 2026 TipFare. For fairer roads.</p>
-        </footer>
     </div>
-    
-    <script>
-        document.querySelectorAll('.faq-item h3').forEach(heading => {
-            heading.addEventListener('click', function() {
-                this.parentElement.classList.toggle('open');
-            });
+</section>
+
+<footer>
+    <div style="margin-bottom: 1rem;">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 16px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:8px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </div>
+    <div>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="mailto:tipfare.app@gmail.com">Contact</a>
+    </div>
+    <div class="footer-tagline">© 2026 TipFare. For fairer roads.</div>
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-item h3').forEach(heading => {
+        heading.addEventListener('click', function() {
+            this.parentElement.classList.toggle('open');
         });
-    </script>
+    });
+    
+    function toggleMenu() {
+        const links = document.getElementById('nav-links');
+        links.classList.toggle('open');
+    }
+</script>
+
 </body>
 </html>
