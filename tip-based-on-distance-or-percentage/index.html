@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Should I Tip Based on Distance or Percentage? | TipFare</title>
+    <meta name="description" content="Learn why distance-based tipping is better than percentage-based tipping for delivery. Understand the economics behind fair delivery tips.">
+    <meta name="og:title" content="Should I Tip Based on Distance or Percentage?">
+    <meta name="og:description" content="Distance-based tipping is the right model for delivery.">
+    <meta name="og:url" content="https://tipfare.app/tip-based-on-distance-or-percentage">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Isn't percentage tipping standard for all service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Percentage tipping works for restaurants because server effort scales with order complexity and price. Delivery is different—driver effort is determined by distance and conditions, not food price. Using the same model for both creates unfair outcomes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much per mile should I tip?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A fair baseline is $1–$1.50 per mile, with modifiers for difficult conditions (weather, traffic, late night, remote area). This accounts for gas, vehicle wear, and driver time. For short trips under 2 miles, maintain a minimum of $4–$5."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if the restaurant price is really high?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The restaurant price doesn't change the driver's costs. A $200 order and a $20 order from the same restaurant might travel the same distance and take the same time. Tip based on distance, not the food bill."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Don't delivery apps suggest a percentage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but that's a default borrowed from restaurant culture. It's convenient for the app, not fair for drivers. You can override the suggestion and use distance-based tipping instead."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is distance-based tipping used anywhere else?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Rideshare, taxi, and courier services all use distance-based pricing and tipping. It's the standard wherever the effort is tied to distance traveled, not transaction price."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;1,900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F7F5F2;
+            color: #13141a;
+        }
+        
+        nav {
+            background: #364254;
+            border-bottom: none;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto;
+        }
+        
+        .nav-links a {
+            font-size: 14px;
+            color: rgba(255,255,255,0.78);
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+        }
+        
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        
+        .page-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #3a64d8;
+            margin-bottom: 1.25rem;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #13141a;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #13141a;
+        }
+        
+        .answer-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid #e8e8e8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .answer-box strong {
+            color: #3a64d8;
+            font-weight: 700;
+        }
+        
+        .section-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .section-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .section-box ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-box li {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            padding-left: 24px;
+            position: relative;
+            font-size: 1rem;
+        }
+        
+        .section-box li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3a64d8;
+            font-weight: 600;
+        }
+        
+        .section-box li strong {
+            color: #13141a;
+        }
+        
+        .comparison-box {
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .comparison-header {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #3a64d8;
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #13141a;
+            margin-bottom: 1rem;
+        }
+        
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .comparison-result {
+            font-size: 15px;
+            font-weight: 700;
+            color: #3a64d8;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e8e8e8;
+        }
+        
+        .example-scenario {
+            background: #fff5f5;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .example-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #dc2626;
+            margin-bottom: 0.75rem;
+        }
+        
+        .example-scenario h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #13141a;
+        }
+        
+        .example-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        
+        .example-note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 0.75rem;
+            font-style: italic;
+        }
+        
+        .model-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .model-card {
+            border-radius: 12px;
+            padding: 1.5rem;
+            background: #ffffff;
+            border: 1.5px solid #e8e8e8;
+        }
+        
+        .model-card.distance {
+            background: #eff4ff;
+            border-color: #3a64d8;
+        }
+        
+        .model-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .model-card.distance .model-label {
+            color: #3a64d8;
+        }
+        
+        .model-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #13141a;
+        }
+        
+        .model-point {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+        
+        .model-point strong {
+            color: #13141a;
+        }
+        
+        .callout {
+            background: #eff4ff;
+            border: 1px solid #3a64d8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 15px;
+            color: #3a64d8;
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
+        .cta-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .btn-primary {
+            background: #3a64d8;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background: #2d52c0;
+        }
+        
+        .faq-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1.5rem 0;
+        }
+        
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .faq-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #13141a;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .faq-item h3:before {
+            content: "+";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #eff4ff;
+            color: #3a64d8;
+            font-weight: 700;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.open h3:before {
+            content: "−";
+        }
+        
+        .faq-answer {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            display: none;
+        }
+        
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        
+        footer {
+            background: #364254;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            font-size: 13px;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
+        
+        .footer-tagline {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.5rem;
+        }
+        
+        .footer-resources {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .resources-toggle {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 13px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+        
+        .resources-toggle:hover {
+            color: #ffffff;
+        }
+        
+        .resources-menu {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2a3444;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            margin-bottom: 8px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .resources-menu.open {
+            display: block;
+        }
+        
+        .resources-menu a {
+            display: block;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            text-align: left;
+            white-space: nowrap;
+        }
+        
+        .resources-menu a:hover {
+            color: #ffffff;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        @media (max-width: 640px) {
+            .model-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 2rem 1.25rem;
+            }
+            
+            .section-box, .answer-box, .cta-section, .faq-section {
+                padding: 2rem 1.5rem;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="nav-logo">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="/#why" onclick="toggleMenu()">Why it matters</a>
+        <a href="/#calculator" onclick="toggleMenu()">Calculator</a>
+        <a href="/#survey" onclick="toggleMenu()">Share</a>
+    </div>
+</nav>
+
+<section>
+    <div class="content">
+        <div class="page-eyebrow">Tipping models explained</div>
+        <h1>Should I tip based on distance or percentage?</h1>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="answer-box">
+            <strong>Distance.</strong> Percentage tipping was designed for restaurants, where effort scales with order price. For delivery, what matters is the distance the driver travels—not the price of the food. Using the wrong model hurts drivers and confuses customers.
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>How percentage tipping became the default</h2>
+            <p>Percentage-based tipping originated in sit-down restaurants, where it makes intuitive sense. A server handling a $100 order (complex dishes, wine pairings, longer service) does more work than one handling a $20 order (simple meal, quick turnover). The percentage reflects the effort.</p>
+            <p>When food delivery became mainstream, the tipping model came with it. Delivery apps copied the percentage system directly because it was familiar to customers and easy to implement. But delivery isn't a restaurant.</p>
+            <p>The driver's effort doesn't scale with the food price. A $5 burger and a $50 sushi order could both be delivered from the same restaurant one mile away—same distance, same time, same work. Or they could both be delivered eight miles away in a snowstorm. The economics are completely different from a sit-down meal.</p>
+            <p>Percentage tipping persisted because it was already there, not because it made sense for the actual work being done.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>Why percentage breaks down for delivery</h2>
+            <p>Consider a real scenario: a late night fast food order to a distant suburb.</p>
+            
+            <div class="example-scenario">
+                <div class="example-label">Percentage model (wrong)</div>
+                <h3>🌃 Late night fast food run</h3>
+                <div class="example-row"><span>Food cost</span><span>$28.50</span></div>
+                <div class="example-row"><span>Distance</span><span>9 miles</span></div>
+                <div class="example-row"><span>Time of day</span><span>11:30 PM</span></div>
+                <div class="example-row"><span>15% tip</span><span style="color: #dc2626; font-weight: 700;">$4.28</span></div>
+                <div class="example-note">Driver delivers 18 miles round trip at night for $4.28.</div>
+            </div>
+            
+            <p>At $4.28, the driver earned less than 25¢ per mile. After gas, they're losing money. But the order value was low, so percentage tipping gives a low result.</p>
+            <p>Now consider if the same fast food order had been $60 instead of $28.50 (maybe a larger group order from the same restaurant, same distance, same driver effort):</p>
+            
+            <div class="example-scenario">
+                <div class="example-label">Percentage model (still wrong)</div>
+                <h3>🌃 Same delivery, higher food cost</h3>
+                <div class="example-row"><span>Food cost</span><span>$60.00</span></div>
+                <div class="example-row"><span>Distance</span><span>9 miles</span></div>
+                <div class="example-row"><span>Time of day</span><span>11:30 PM</span></div>
+                <div class="example-row"><span>15% tip</span><span style="color: #dc2626; font-weight: 700;">$9.00</span></div>
+                <div class="example-note">Driver delivers 18 miles round trip at night for $9.00—more than double, for identical work.</div>
+            </div>
+            
+            <p>The driver did the exact same work—same 9-mile distance, same 11:30 PM delivery, same amount of time and gas burned—but received $4.72 more because the food cost more. That's not fairness. That's the restaurant's pricing affecting the driver's compensation.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>How the two models compare</h2>
+            
+            <div class="model-comparison">
+                <div class="model-card">
+                    <div class="model-label">Percentage model</div>
+                    <h3>How it works</h3>
+                    <div class="model-point"><strong>Tip amount</strong> is calculated as a percentage of the food bill.</div>
+                    <div class="model-point"><strong>Logic</strong> assumes higher-priced orders require more effort.</div>
+                    <div class="model-point"><strong>Result</strong> ties driver income to restaurant pricing, not driver effort.</div>
+                </div>
+                <div class="model-card distance">
+                    <div class="model-label">Distance-based model</div>
+                    <h3>How it works</h3>
+                    <div class="model-point"><strong>Tip amount</strong> is calculated based on miles driven and delivery conditions.</div>
+                    <div class="model-point"><strong>Logic</strong> compensates for the actual costs drivers face (gas, time, wear).</div>
+                    <div class="model-point"><strong>Result</strong> ties driver income to the work actually being done.</div>
+                </div>
+            </div>
+            
+            <div class="callout">
+                Distance-based tipping aligns driver compensation with the factors drivers can't control—how far they have to go, how long it takes, and what conditions they face.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>What distance-based tipping looks like in practice</h2>
+            <p>Instead of calculating a percentage, you calculate a per-mile tip. A fair baseline is <strong>$1–$1.50 per mile</strong>, with adjustments for conditions that make the delivery harder.</p>
+            <p>For the late night suburban run (9 miles):</p>
+            
+            <div class="comparison-box">
+                <div class="comparison-header">Distance-based tip (right)</div>
+                <div class="comparison-row"><span>Base: 9 miles × $1.50/mile</span><span>$13.50</span></div>
+                <div class="comparison-row"><span>Late night modifier</span><span>+$2.00</span></div>
+                <div class="comparison-row"><span><strong>Total tip</strong></span><span style="font-weight: 700; color: #3a64d8;">$15.50</span></div>
+            </div>
+            
+            <p>At $15.50, the driver earned ~$1.72 per mile (enough to cover gas, vehicle wear, and time). Compare that to the $4.28 they'd get under percentage tipping, and the difference is clear.</p>
+            <p>Distance-based tipping isn't generous—it's fair. It acknowledges what the driver is actually giving: their time, their vehicle, and the distance they're traveling.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="cta-section">
+            <h2>Calculate the right tip</h2>
+            <p>TipFare does the math for you. Enter the distance and any special conditions, and get a fair tip recommendation based on what drivers actually need.</p>
+            <a href="/#calculator" class="btn-primary">Try the calculator</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="faq-section">
+            <h2>Frequently asked questions</h2>
+            
+            <div class="faq-item">
+                <h3>Isn't percentage tipping standard for all service?</h3>
+                <div class="faq-answer">
+                    Percentage tipping works for restaurants because server effort scales with order complexity and price. Delivery is different: driver effort is determined by distance and conditions, not food price. Using the same model for both creates unfair outcomes.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How much per mile should I tip?</h3>
+                <div class="faq-answer">
+                    A fair baseline is $1.50 per mile, with modifiers for difficult conditions (weather, traffic, late night, remote area). This accounts for gas, vehicle wear, and driver time. For short trips under 2 miles, maintain a minimum of $4–$5.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What if the restaurant price is really high?</h3>
+                <div class="faq-answer">
+                    The restaurant price doesn't change the driver's costs. A $200 order and a $20 order from the same restaurant might travel the same distance and take the same time. Tip based on distance, not the food bill.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Don't delivery apps suggest a percentage?</h3>
+                <div class="faq-answer">
+                    Yes, but that's a default borrowed from restaurant culture. It's convenient for the app, not fair for drivers. You can override the suggestion and use distance-based tipping instead.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Is distance-based tipping used anywhere else?</h3>
+                <div class="faq-answer">
+                    Yes. Rideshare, taxi, and courier services all use distance-based pricing and tipping. It's the standard wherever the effort is tied to distance traveled, not transaction price.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div style="margin-bottom: 1rem;">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 16px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:8px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </div>
+    <div>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="mailto:tipfare.app@gmail.com">Contact</a>
+        <span class="footer-resources">
+            <button class="resources-toggle" onclick="toggleResources()">Resources ▴</button>
+            <div class="resources-menu" id="resources-menu">
+                <a href="/how-much-to-tip-delivery-driver">How Much to Tip Delivery Drivers</a>
+                <a href="/tip-based-on-distance-or-percentage">Should I tip based on distance or percentage?</a>
+                <a href="/is-5-dollars-a-good-tip-for-delivery">Is $5 a good tip for delivery?</a>
+                <a href="/tip-more-bad-weather-late-night-delivery">Should I tip more for bad weather or late night delivery?</a>
+                <a href="/why-do-delivery-drivers-rely-on-tips">Why do delivery drivers rely on tips?</a>
+            </div>
+        </span>
+    </div>
+    <div class="footer-tagline">© 2026 TipFare. For fairer roads.</div>
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-item h3').forEach(heading => {
+        heading.addEventListener('click', function() {
+            this.parentElement.classList.toggle('open');
+        });
+    });
+    
+    function toggleMenu() {
+        const links = document.getElementById('nav-links');
+        links.classList.toggle('open');
+    }
+    
+    function toggleResources() {
+        const menu = document.getElementById('resources-menu');
+        menu.classList.toggle('open');
+    }
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.footer-resources')) {
+            document.getElementById('resources-menu').classList.remove('open');
+        }
+    });
+</script>
+
+</body>
+</html>
