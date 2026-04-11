@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Do Delivery Drivers Rely on Tips? | TipFare</title>
+    <meta name="description" content="Delivery drivers rely on tips because base pay is $2–$4 per delivery. Learn how driver income actually works and why tips are essential.">
+    <meta name="og:title" content="Why Do Delivery Drivers Rely on Tips?">
+    <meta name="og:description" content="The math behind why delivery drivers depend on your tips.">
+    <meta name="og:url" content="https://tipfare.app/why-do-delivery-drivers-rely-on-tips">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the base pay for delivery drivers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most major platforms (DoorDash, Uber Eats, Grubhub) pay drivers $2–$4 per delivery as base pay. This base amount doesn't scale with distance—a 1-mile and a 10-mile delivery often earn the same $2–$4 base."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much of a driver's income comes from tips?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "According to 2025 Gridwise data, tips make up approximately 48% of a DoorDash driver's median earnings ($11.26/hour total). Without tips, driver earnings would drop to roughly $5–$6 per hour before expenses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do delivery fees go to the driver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Delivery fees go to the platform (DoorDash, Uber Eats, etc.), not to the driver. The driver's compensation comes from base pay plus your tip. The delivery fee is separate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are a driver's actual expenses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Drivers are independent contractors responsible for 100% of their expenses: gas, vehicle maintenance, insurance, and phone service. These costs typically reduce net earnings by 30–50% of gross pay."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does distance affect driver earnings without tips?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 7-mile delivery earning $3 base pay costs the driver money just to complete it. At $0.36–$0.43 per engaged mile, a driver loses money on fuel and wear without a tip to cover the actual distance traveled."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;1,900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F7F5F2;
+            color: #13141a;
+        }
+        
+        nav {
+            background: #364254;
+            border-bottom: none;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto;
+        }
+        
+        .nav-links a {
+            font-size: 14px;
+            color: rgba(255,255,255,0.78);
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+        }
+        
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        
+        .page-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #3a64d8;
+            margin-bottom: 1.25rem;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #13141a;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #13141a;
+        }
+        
+        .answer-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid #e8e8e8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .answer-box strong {
+            color: #3a64d8;
+            font-weight: 700;
+        }
+        
+        .section-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .section-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .example-scenario {
+            background: #fff5f5;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            color: #dc2626;
+        }
+        
+        .example-scenario h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #dc2626;
+        }
+        
+        .example-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            color: #dc2626;
+            margin-bottom: 0.75rem;
+        }
+        
+        .example-row span:first-child {
+            font-weight: 500;
+        }
+        
+        .example-row span:last-child {
+            font-weight: 700;
+            text-align: right;
+        }
+        
+        .data-callout {
+            background: #eff4ff;
+            border: 1px solid #3a64d8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 14px;
+            color: #3a64d8;
+            line-height: 1.6;
+        }
+        
+        .data-callout strong {
+            color: #13141a;
+        }
+        
+        .section-box ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-box li {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            padding-left: 24px;
+            position: relative;
+            font-size: 1rem;
+        }
+        
+        .section-box li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3a64d8;
+            font-weight: 600;
+        }
+        
+        .section-box li strong {
+            color: #13141a;
+        }
+        
+        .cta-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .btn-primary {
+            background: #3a64d8;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background: #2d52c0;
+        }
+        
+        .faq-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1.5rem 0;
+        }
+        
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .faq-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #13141a;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .faq-item h3:before {
+            content: "+";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #eff4ff;
+            color: #3a64d8;
+            font-weight: 700;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.open h3:before {
+            content: "−";
+        }
+        
+        .faq-answer {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            display: none;
+        }
+        
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        
+        footer {
+            background: #364254;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            font-size: 13px;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
+        
+        .footer-tagline {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.5rem;
+        }
+        
+        .footer-resources {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .resources-toggle {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 13px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+        
+        .resources-toggle:hover {
+            color: #ffffff;
+        }
+        
+        .resources-menu {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2a3444;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            margin-bottom: 8px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .resources-menu.open {
+            display: block;
+        }
+        
+        .resources-menu a {
+            display: block;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            text-align: left;
+            white-space: nowrap;
+        }
+        
+        .resources-menu a:hover {
+            color: #ffffff;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        @media (max-width: 640px) {
+            .section-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .faq-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            nav {
+                padding: 0 1.25rem;
+            }
+            
+            section {
+                padding: 3rem 1.25rem;
+            }
+            
+            .hamburger {
+                display: flex !important;
+                margin-left: auto;
+            }
+            
+            .nav-links {
+                display: none !important;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #364254;
+                padding: 1rem 2rem 1.5rem;
+                gap: 1.25rem;
+                z-index: 99;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.open {
+                display: flex !important;
+            }
+            
+            .nav-links a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="nav-logo">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="/#why" onclick="toggleMenu()">Why it matters</a>
+        <a href="/#calculator" onclick="toggleMenu()">Calculator</a>
+        <a href="/#survey" onclick="toggleMenu()">Share</a>
+    </div>
+</nav>
+
+<section>
+    <div class="content">
+        <div class="page-eyebrow">Understanding driver income</div>
+        <h1>Why do delivery drivers rely on tips?</h1>
+        
+        <div class="answer-box">
+            <strong>Because base pay is $2–$4 per delivery — regardless of distance.</strong> On most major platforms (DoorDash, Uber Eats, Grubhub), that's the platform's contribution. Tips are what actually compensate drivers for the work: the miles driven, time spent, fuel burned, and conditions faced. Without tips, most delivery drivers can't cover their costs.
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>The base pay structure</h2>
+            <p>Delivery platforms use a simple pay model: base pay + your tip. The base pay is supposed to account for time and distance, but in practice it sits between $2–$4 per order no matter how far the driver goes.</p>
+            
+            <ul>
+                <li><strong>Base pay:</strong> $2–$4 per delivery (doesn't scale with distance).</li>
+                <li><strong>Your tip:</strong> Goes 100% to the driver.</li>
+                <li><strong>Delivery fee:</strong> Goes to the platform, not the driver.</li>
+            </ul>
+            
+            <p>This structure means the tip is the only variable part of driver compensation. A $3 base pay is the same whether a driver delivers 1 mile or 9 miles. That's where tips become essential — they're what makes longer distances economically viable for the driver.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="data-callout">
+            <strong>According to 2025 Gridwise data:</strong> The median DoorDash driver earns $11.26/hour total. Tips account for approximately 48% of that earnings. Without tips, driver earnings drop to roughly $5–$6 per hour before factoring in expenses.
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>What this looks like in practice</h2>
+            <p>Let's look at the math for a driver completing 20 deliveries in a shift with no tips:</p>
+            
+            <div class="example-scenario">
+                <h3>🚗 20 deliveries. No tips.</h3>
+                <div class="example-row"><span>Base pay:</span><span>~$65</span></div>
+                <div class="example-row"><span>Gas + wear:</span><span>~$25</span></div>
+                <div class="example-row"><span>Net:</span><span>~$40</span></div>
+            </div>
+            
+            <p>That's roughly $40 for a full shift of work before considering vehicle depreciation, insurance, or phone service. In suburban markets where base pay averages around $3 per trip covering nearly 9 miles of driving, a driver is getting $0.36–$0.43 per engaged mile.</p>
+            
+            <p>For context: a 7-mile delivery earning $3 base pay costs more in fuel and wear than the driver earns without a tip. The math only works when customers tip based on the actual distance driven.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>The delivery fee myth</h2>
+            <p>Many customers assume the "delivery fee" charged by the app goes to the driver. It doesn't. That fee is kept by the platform to cover operations, support, marketing, and profit. The driver sees none of it.</p>
+            
+            <p>This is why you'll sometimes hear drivers talk about taking orders based on the tip amount shown upfront—because that's often the only reliable part of their compensation for the work. The base pay is fixed. The delivery fee is hidden. The tip is the signal of what the customer thinks the work is worth.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="cta-section">
+            <h2>Make the math work for drivers.</h2>
+            <p>Use the TipFare calculator to understand what fair compensation looks like based on real distance and conditions.</p>
+            <a href="/#calculator" class="btn-primary">Calculate a fair tip</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="faq-section">
+            <h2>Frequently asked questions</h2>
+            
+            <div class="faq-item">
+                <h3>What is the base pay for delivery drivers?</h3>
+                <div class="faq-answer">
+                    Most major platforms (DoorDash, Uber Eats, Grubhub) pay drivers $2–$4 per delivery as base pay. This base amount doesn't scale with distance—a 1-mile and a 10-mile delivery often earn the same $2–$4 base.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How much of a driver's income comes from tips?</h3>
+                <div class="faq-answer">
+                    According to 2025 Gridwise data, tips make up approximately 48% of a DoorDash driver's median earnings ($11.26/hour total). Without tips, driver earnings would drop to roughly $5–$6 per hour before expenses.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do delivery fees go to the driver?</h3>
+                <div class="faq-answer">
+                    No. Delivery fees go to the platform (DoorDash, Uber Eats, etc.), not to the driver. The driver's compensation comes from base pay plus your tip. The delivery fee is separate.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What are a driver's actual expenses?</h3>
+                <div class="faq-answer">
+                    Drivers are independent contractors responsible for 100% of their expenses: gas, vehicle maintenance, insurance, and phone service. These costs typically reduce net earnings by 30–50% of gross pay.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How does distance affect driver earnings without tips?</h3>
+                <div class="faq-answer">
+                    A 7-mile delivery earning $3 base pay costs the driver money just to complete it. At $0.36–$0.43 per engaged mile, a driver loses money on fuel and wear without a tip to cover the actual distance traveled.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div style="margin-bottom: 1rem;">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 16px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:8px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </div>
+    <div>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/cdn-cgi/l/email-protection#a1d5c8d1c7c0d3c48fc0d1d1e1c6ccc0c8cd8fc2cecc">Contact</a>
+        <span class="footer-resources">
+            <button class="resources-toggle" onclick="toggleResources()">Resources ▴</button>
+            <div class="resources-menu" id="resources-menu">
+                <a href="/how-much-to-tip-delivery-driver">How Much to Tip Delivery Drivers</a>
+                <a href="/tip-based-on-distance-or-percentage">Should I tip based on distance or percentage?</a>
+                <a href="/is-5-dollars-a-good-tip-for-delivery">Is $5 a good tip for delivery?</a>
+                <a href="/tip-more-bad-weather-late-night-delivery">Should I tip more for bad weather or late night delivery?</a>
+                <a href="/why-do-delivery-drivers-rely-on-tips">Why do delivery drivers rely on tips?</a>
+            </div>
+        </span>
+    </div>
+    <div class="footer-tagline">© 2026 TipFare. For fairer roads.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.querySelectorAll('.faq-item h3').forEach(heading => {
+        heading.addEventListener('click', function() {
+            this.parentElement.classList.toggle('open');
+        });
+    });
+    
+    function toggleMenu() {
+        const links = document.getElementById('nav-links');
+        links.classList.toggle('open');
+    }
+    
+    function toggleResources() {
+        const menu = document.getElementById('resources-menu');
+        menu.classList.toggle('open');
+    }
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.clos
