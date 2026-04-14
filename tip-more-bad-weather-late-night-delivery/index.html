@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Should I Tip More for Bad Weather or Late Night Delivery? | TipFare</title>
+    <meta name="description" content="Yes, you should tip more for bad weather and late night deliveries. Learn why and by how much.">
+    <meta name="og:title" content="Should I Tip More for Bad Weather or Late Night Delivery?">
+    <meta name="og:description" content="Why weather and time of day matter for delivery driver compensation.">
+    <meta name="og:url" content="https://tipfare.app/tip-more-bad-weather-late-night-delivery">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much extra should I tip for bad weather?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add $3 to your tip for bad weather (rain, snow, ice). This accounts for slower driving, increased safety risk, and equipment exposure. A delivery that normally takes 15 minutes might take 25 minutes in heavy rain—without the modifier, the driver's hourly rate drops significantly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why tip more for late night or early morning delivery?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add $2 for late night or early morning deliveries. Fewer drivers are working at these hours, so available orders are in higher demand. More importantly, the driver is sacrificing sleep, family time, or social life to work when most people rest. It's compensation for the lifestyle cost, not just the delivery time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I add a modifier?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the TipFare calculator—it has toggles for all modifiers: bad weather, late night/early morning, large order, and remote area. Just toggle the conditions that apply to your delivery, and the calculator automatically adds the right amount to your fair tip."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do modifiers stack?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If you're ordering delivery during a snowstorm at 11 PM to a remote area, all three modifiers apply. The calculator adds them together, so the final tip reflects the actual complexity and risk the driver faces."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I always tip more in bad weather?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If conditions are severe (heavy snow, flooding, dangerous ice), yes—add the weather modifier. For light rain or drizzle, use your judgment. The goal is fair compensation for the actual difficulty, not guilt-based tipping."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;1,900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F7F5F2;
+            color: #13141a;
+        }
+        
+        nav {
+            background: #364254;
+            border-bottom: none;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto;
+        }
+        
+        .nav-links a {
+            font-size: 14px;
+            color: rgba(255,255,255,0.78);
+            text-decoration: none;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #fff;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+        }
+        
+        .content {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        
+        .page-eyebrow {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #3a64d8;
+            margin-bottom: 1.25rem;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            color: #13141a;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #13141a;
+        }
+        
+        .answer-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid #e8e8e8;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .answer-box strong {
+            color: #3a64d8;
+            font-weight: 700;
+        }
+        
+        .section-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .section-box p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .scenario-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .scenario-card {
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #fecaca;
+        }
+        
+        .scenario-card.normal {
+            background: #f9fafb;
+            border-color: #e5e7eb;
+        }
+        
+        .scenario-card.bad {
+            background: #fff5f5;
+            border-color: #fecaca;
+        }
+        
+        .scenario-card.good {
+            background: #eff4ff;
+            border-color: #3a64d8;
+        }
+        
+        .scenario-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .scenario-card.normal .scenario-label {
+            color: #6b7280;
+        }
+        
+        .scenario-card.bad .scenario-label {
+            color: #dc2626;
+        }
+        
+        .scenario-card.good .scenario-label {
+            color: #3a64d8;
+        }
+        
+        .scenario-card.good .scenario-row .value {
+            color: #3a64d8;
+        }
+        
+        .scenario-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #13141a;
+        }
+        
+        .scenario-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scenario-row .label {
+            font-weight: 500;
+        }
+        
+        .scenario-row .value {
+            font-weight: 700;
+            text-align: right;
+        }
+        
+        .scenario-card.bad .scenario-row .value {
+            color: #dc2626;
+        }
+        
+        .scenario-footer {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            font-size: 13px;
+            color: #888;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        
+        .modifier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: #ffffff;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .modifier-table th,
+        .modifier-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .modifier-table th {
+            background-color: #f9fafb;
+            font-weight: 700;
+            color: #13141a;
+            font-size: 14px;
+        }
+        
+        .modifier-table td {
+            font-size: 15px;
+            color: #555;
+        }
+        
+        .modifier-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-callout {
+            background: #eff4ff;
+            border: 1px solid #3a64d8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-size: 14px;
+            color: #3a64d8;
+            line-height: 1.6;
+        }
+        
+        .data-callout strong {
+            color: #13141a;
+        }
+        
+        .section-box ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-box li {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            padding-left: 24px;
+            position: relative;
+            font-size: 1rem;
+        }
+        
+        .section-box li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3a64d8;
+            font-weight: 600;
+        }
+        
+        .section-box li strong {
+            color: #13141a;
+        }
+        
+        .cta-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .btn-primary {
+            background: #3a64d8;
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background: #2d52c0;
+        }
+        
+        .faq-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            margin: 0 auto 3rem;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #e8e8e8;
+            padding: 1.5rem 0;
+        }
+        
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .faq-item h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #13141a;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .faq-item h3:before {
+            content: "+";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #eff4ff;
+            color: #3a64d8;
+            font-weight: 700;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .faq-item.open h3:before {
+            content: "−";
+        }
+        
+        .faq-answer {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            display: none;
+        }
+        
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+        
+        footer {
+            background: #364254;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem;
+            font-size: 13px;
+        }
+        
+        footer a {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+        }
+        
+        footer a:hover {
+            color: #ffffff;
+        }
+        
+        .footer-tagline {
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            margin-top: 0.5rem;
+        }
+        
+        .footer-resources {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .resources-toggle {
+            color: rgba(255,255,255,0.65);
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 13px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            padding: 0;
+        }
+        
+        .resources-toggle:hover {
+            color: #ffffff;
+        }
+        
+        .resources-menu {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2a3444;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            margin-bottom: 8px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .resources-menu.open {
+            display: block;
+        }
+        
+        .resources-menu a {
+            display: block;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            text-align: left;
+            white-space: nowrap;
+        }
+        
+        .resources-menu a:hover {
+            color: #ffffff;
+            background: rgba(255,255,255,0.05);
+        }
+        
+        @media (max-width: 640px) {
+            .scenario-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-box {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            .faq-section {
+                padding: 2rem 1.5rem;
+            }
+            
+            nav {
+                padding: 0 1.25rem;
+            }
+            
+            section {
+                padding: 3rem 1.25rem;
+            }
+            
+            .hamburger {
+                display: flex !important;
+                margin-left: auto;
+            }
+            
+            .nav-links {
+                display: none !important;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #364254;
+                padding: 1rem 2rem 1.5rem;
+                gap: 1.25rem;
+                z-index: 99;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .nav-links.open {
+                display: flex !important;
+            }
+            
+            .nav-links a {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/" class="nav-logo">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 20px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:10px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </a>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="/#why" onclick="toggleMenu()">Why it matters</a>
+        <a href="/#calculator" onclick="toggleMenu()">Calculator</a>
+        <a href="/#survey" onclick="toggleMenu()">Share</a>
+    </div>
+</nav>
+
+<section>
+    <div class="content">
+        <div class="page-eyebrow">Conditions that change the math</div>
+        <h1>Should I tip more for bad weather or late night delivery?</h1>
+        
+        <div class="answer-box">
+            <strong>Yes.</strong> Bad weather and late night deliveries both change the work significantly. Weather increases risk and slows the trip. Late night means the driver is sacrificing sleep or social time. These aren't reasons to feel guilty. They're legitimate changes to the work that deserve compensation.
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>Why time matters in bad weather</h2>
+            <p>A delivery that takes 15 minutes in normal conditions might take 25 minutes in heavy rain or snow. Same distance. Same base pay. But the driver spent an extra 10 minutes dealing with slower traffic, poor visibility, and worse road conditions.</p>
+            
+            <div class="scenario-comparison">
+                <div class="scenario-card normal">
+                    <div class="scenario-label">Normal conditions</div>
+                    <h3>🍕 Pizza delivery</h3>
+                    <div class="scenario-row"><span class="label">Distance:</span><span class="value">3 miles</span></div>
+                    <div class="scenario-row"><span class="label">Time:</span><span class="value">~15 min</span></div>
+                    <div class="scenario-row"><span class="label">Base pay:</span><span class="value">$3</span></div>
+                    <div class="scenario-row"><span class="label">Fair tip:</span><span class="value">$5–$6</span></div>
+                    <div class="scenario-footer">Earns ~$8–$9 total for 15 minutes = ~$32–$36/hour</div>
+                </div>
+                
+                <div class="scenario-card bad">
+                    <div class="scenario-label">Snowstorm (no modifier)</div>
+                    <h3>❄️ Same pizza, heavy snow</h3>
+                    <div class="scenario-row"><span class="label">Distance:</span><span class="value">3 miles</span></div>
+                    <div class="scenario-row"><span class="label">Time:</span><span class="value">~25 min</span></div>
+                    <div class="scenario-row"><span class="label">Base pay:</span><span class="value">$3</span></div>
+                    <div class="scenario-row"><span class="label">Tip (no modifier):</span><span class="value">$5–$6</span></div>
+                    <div class="scenario-footer">Earns ~$8–$9 total for 25 minutes = ~$19–$22/hour</div>
+                </div>
+                
+                <div class="scenario-card good">
+                    <div class="scenario-label">Snowstorm (with modifier)</div>
+                    <h3>❄️ Same pizza + weather modifier</h3>
+                    <div class="scenario-row"><span class="label">Distance:</span><span class="value">3 miles</span></div>
+                    <div class="scenario-row"><span class="label">Time:</span><span class="value">~25 min</span></div>
+                    <div class="scenario-row"><span class="label">Base pay:</span><span class="value">$3</span></div>
+                    <div class="scenario-row"><span class="label">Tip (with +$3):</span><span class="value">$8–$9</span></div>
+                    <div class="scenario-footer">Earns ~$11–$12 total for 25 minutes = ~$26–$29/hour</div>
+                </div>
+            </div>
+            
+            <p>The red card shows what happens without the modifier: the driver's hourly rate drops from $32–$36/hour to $19–$22/hour for the same work. The blue card shows the fix: a $3 weather modifier brings the hourly rate back to fair. Time didn't change. Distance didn't change. The work got harder. The pay should reflect that.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>The modifiers that matter</h2>
+            <p>TipFare uses four modifiers that change how much a fair tip is. Each one reflects a real cost or sacrifice the driver faces:</p>
+            
+            <table class="modifier-table">
+                <thead>
+                    <tr>
+                        <th>Condition</th>
+                        <th>Add to tip</th>
+                        <th>Why</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bad weather</strong></td>
+                        <td>+$3</td>
+                        <td>Slower driving, safety risk, equipment exposure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Late night / early morning</strong></td>
+                        <td>+$2</td>
+                        <td>Sacrifice of sleep, family time, social life</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Large order</strong></td>
+                        <td>+$2</td>
+                        <td>Weight, multiple bags, carrying difficulty</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Remote area</strong></td>
+                        <td>+$3</td>
+                        <td>Extended mileage, no nearby pickups for next order</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="data-callout">
+                <strong>Here's the important part:</strong> TipFare has toggles for all of these. You don't have to do the math or remember the amounts. Just check the boxes that apply to your delivery, and the calculator automatically adds them to your fair tip. One switch per condition.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="section-box">
+            <h2>Late night is different from weather</h2>
+            <p>Weather is about the delivery itself—it takes longer, it's harder, it's riskier. Late night is about the driver's life. Ordering food at 11 PM or 6 AM means the driver is working when most people sleep. They're missing family dinner, skipping sleep before work, or giving up a social evening.</p>
+            
+            <p>It's not about how long the delivery takes. It's about what the driver sacrifices to fulfill it. The $2 modifier reflects that you're asking someone to work outside normal hours to get your order.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="cta-section">
+            <h2>Let the calculator handle it.</h2>
+            <p>Enter your delivery details and toggle the conditions that apply. TipFare does the math and shows you the fair amount automatically.</p>
+            <a href="/#calculator" class="btn-primary">Use the calculator</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="content">
+        <div class="faq-section">
+            <h2>Frequently asked questions</h2>
+            
+            <div class="faq-item">
+                <h3>How much extra should I tip for bad weather?</h3>
+                <div class="faq-answer">
+                    Add $3 to your tip for bad weather (rain, snow, ice). This accounts for slower driving, increased safety risk, and equipment exposure. A delivery that normally takes 15 minutes might take 25 minutes in heavy rain—without the modifier, the driver's hourly rate drops significantly.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Why tip more for late night or early morning delivery?</h3>
+                <div class="faq-answer">
+                    Add $2 for late night or early morning deliveries. Fewer drivers are working at these hours, so available orders are in higher demand. More importantly, the driver is sacrificing sleep, family time, or social life to work when most people rest. It's compensation for the lifestyle cost, not just the delivery time.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>When should I add a modifier?</h3>
+                <div class="faq-answer">
+                    Use the TipFare calculator—it has toggles for all modifiers: bad weather, late night/early morning, large order, and remote area. Just toggle the conditions that apply to your delivery, and the calculator automatically adds the right amount to your fair tip.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do modifiers stack?</h3>
+                <div class="faq-answer">
+                    Yes. If you're ordering delivery during a snowstorm at 11 PM to a remote area, all three modifiers apply. The calculator adds them together, so the final tip reflects the actual complexity and risk the driver faces.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Should I always tip more in bad weather?</h3>
+                <div class="faq-answer">
+                    If conditions are severe (heavy snow, flooding, dangerous ice), yes—add the weather modifier. For light rain or drizzle, use your judgment. The goal is fair compensation for the actual difficulty, not guilt-based tipping.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div style="margin-bottom: 1rem;">
+        <span style="font-family: 'DM Sans', -apple-system, sans-serif; font-weight: 900; font-style: italic; font-size: 16px; color: #fff; letter-spacing: -0.5px;">TipFare<sup style="font-size:8px;font-style:normal;font-weight:300;vertical-align:super;">™</sup></span>
+    </div>
+    <div>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/cdn-cgi/l/email-protection#93e7fae3f5f2e1f6bdf2e3e3d3f4fef2faffbdf0fcfe">Contact</a>
+        <span class="footer-resources">
+            <button class="resources-toggle" onclick="toggleResources()">Resources ▴</button>
+            <div class="resources-menu" id="resources-menu">
+                <a href="/how-much-to-tip-delivery-driver">How Much to Tip Delivery Drivers</a>
+                <a href="/tip-based-on-distance-or-percentage">Should I tip based on distance or percentage?</a>
+                <a href="/is-5-dollars-a-good-tip-for-delivery">Is $5 a good tip for delivery?</a>
+                <a href="/tip-more-bad-weather-late-night-delivery">Should I tip more for bad weather or late night delivery?</a>
+                <a href="/why-do-delivery-drivers-rely-on-tips">Why do delivery drivers rely on tips?</a>
+            </div>
+        </span>
+    </div>
+    <div class="footer-tagline">© 2026 TipFare. For fairer roads.</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.querySelectorAll('.faq-item h3').forEach(heading => {
+        heading.addEventListener('click', function() {
+            this.parentElement.classList.toggle('open');
+        });
+    });
+    
+    function toggleMenu() {
+        const links = document.getElementById('nav-links');
+        links.classList.toggle('open');
+    }
+    
+    function toggleResources() {
+        const menu = document.getElementById('resources-menu');
+        menu.classList.toggle('open');
+    }
+    
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.footer-resources')) {
+            document.getElementById('resources-menu').classList.remove('open');
+        }
+    });
+</script>
+</body>
+</html>
